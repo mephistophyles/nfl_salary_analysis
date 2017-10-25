@@ -66,7 +66,7 @@ def check_dictionary(d):
     v = d.values()
     for i in range(1,33):
         if i not in v:
-            print 'missing {}'.format(i)
+            print('missing {}'.format(i))
             return False
     return True
 
@@ -103,7 +103,7 @@ def clean_salary_text(input_file, output_file):
     data = [x.split('\n') for x in data]
     output_file = join(getcwd(), 'data/{}'.format(output_file))
     f = open(output_file, 'w')
-    print output_file
+    print(output_file)
 
     for line in data:
         f.write(line[0]+'\n')
@@ -116,9 +116,9 @@ def import_team_rankings(stat_file):
     data = {}
     for k in keys:
         data[k] = []
-    for i in xrange(32):
+    for i in range(32):
         line = f.readline().split("\t")
-        for j in xrange(len(keys)):
+        for j in range(len(keys)):
             data[keys[j]].append(line[j])
     f.close()
     return data
@@ -227,19 +227,19 @@ def offense_defense_stats(pos = "Offense"):
     yards_efficiency = [x / y for x, y in zip(yards_ratio, salary_ratio)]
     points_efficiency = [x / y for x, y in zip(points_ratio, salary_ratio)]
     plt.figure()
-    p1 = plt.scatter(xrange(32), yards_ratio, color='r')
-    p2 = plt.scatter(xrange(32), points_ratio, color='blue')
+    p1 = plt.scatter(range(32), yards_ratio, color='r')
+    p2 = plt.scatter(range(32), points_ratio, color='blue')
     plt.xticks(np.arange(32), teams, rotation='vertical')
     plt.legend((p1, p2), ('yards ratio', 'points ratio'))
     plt.figure()
-    p3 = plt.scatter(xrange(32), yards_efficiency, color='r')
-    p4 = plt.scatter(xrange(32), points_efficiency, color='blue')
+    p3 = plt.scatter(range(32), yards_efficiency, color='r')
+    p4 = plt.scatter(range(32), points_efficiency, color='blue')
     plt.xticks(np.arange(32), teams, rotation='vertical')
     plt.legend((p3, p4), ('yard/salary efficiency', 'point/salary efficiency'))
     plt.show()
-    print "*" * 50
+    print("*" * 50)
 
 
 if __name__ == "__main__":
-    print "*"*50
+    print("*"*50)
     plot_overview('2016_cap_hits.csv')
